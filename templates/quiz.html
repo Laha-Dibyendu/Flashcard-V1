@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Card</title>
+    <style>
+        body {
+            font-family: Garamond, serif;;
+        
+    }
+        
+        .flip-box {
+          border-radius: 0.5em;
+          background-color: transparent;
+          width: 300px;
+          height: 200px;
+          border: 1px solid #f1f1f1;
+          perspective: 1000px;
+        }
+        
+        .flip-box-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          transition: transform 0.8s;
+          transform-style: preserve-3d;
+        }
+        
+        .flip-box:hover .flip-box-inner {
+          transform: rotateY(180deg);
+        }
+        
+        .flip-box-front, .flip-box-back {
+          border-radius: 0.5em;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+        
+        .flip-box-front {
+          background-color: rgb(84, 238, 84);
+          color: black;
+        }
+        
+        .flip-box-back {
+          background-color: dodgerblue;
+          color: white;
+          transform: rotateY(180deg);
+        }
+        .btn1 {
+          border-radius: 0.5em;
+        border: 2px solid black;
+        background-color: white;
+        color: black;
+        padding: 8px 9px;
+        font-size: 16px;
+        cursor: pointer;
+        width:auto;
+        text-align: center;
+        /* border-radius: 5px; */
+        }
+
+        /* Green */
+        .success {
+        border-color: #04AA6D;
+        color: green;
+        }
+
+        .success:hover {
+        background-color: #04AA6D;
+        color: white;
+        }
+
+        /* Blue */
+        .info {
+        border-color: #2196F3;
+        color: dodgerblue;
+        
+        }
+
+        .info:hover {
+        background: #2196F3;
+        color: white;
+        }
+
+        /* Orange */
+        .warning {
+        border-color: #ff9800;
+        color: orange;
+
+        }
+
+        .warning:hover {
+        background: #ff9800;
+        color: white;
+        }
+
+        /* Red */
+        .danger {
+        border-color: #f44336;
+        color: red;
+        
+        }
+
+        .danger:hover {
+        background: #f44336;
+        color: white;
+        }
+
+
+        </style>
+
+    <script>
+
+        function reply_click(){
+            var collection1 = document.getElementsByClassName("flip-box");
+            
+            var m = Math.floor((Math.random() * document.getElementById("kk").innerHTML)+1);
+            for (var i =0 ; i < collection1.length; i++){
+                if (i+1 != m){
+                    document.getElementById('js'+(i+1)).style.visibility="hidden";
+                }
+                else{
+                    document.getElementById('js'+(i+1)).style.visibility="visible";  
+                    
+                        
+                }
+            }
+            
+        }
+        
+
+    </script>
+
+</head>
+<body style="text-align:center; 
+background-image: url('/static/bobo.jpeg');background-repeat: no-repeat;
+        background-attachment:scroll; 
+        background-size: 100% 100%; background-attachment: scroll, local;;
+        width: 1944px;
+        min-height: 724px;
+        height: 100%;
+        width: 100%;">
+
+
+<div class="bg2" style="background-color:#011047;">
+    <div class="p-3 mb-2 bg-dark text-white" style="padding: 0.8rem!important;">
+        <h1 style="text-align: left;">Hi {{ current_user.f_name }},Your score is now {{ds if ds|int or ds|float else 0}}/10 for Deck '{{p}}'</h1> 
+        <h3 style="text-align: left;">Each time press the button "See card" to get a card. Guess the answer and give marks to yourself.</h3>
+        <p style="text-align: left;">Your Card can be any where in the page please scroll down and check each time after hitting "See card" button</p>
+        <p style="text-align: right;">||Easy : 10 || Medium : 7|| Hard : 5 || Very Hard : 2||</p> 
+    </div>
+  </div>
+
+
+
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <div class="container-fluid">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" ><h4>Quiz</h4></a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href='/signin/deck/{{current_user.id}}'><h4>Go Back</h4></a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="/logout">Log Out</a>
+    </li> -->
+    </ul>
+    </div>
+    </nav>
+   
+<!-- 
+    <h2>Your score is {{ds if ds|int or ds|float else 0}}/10 for deck {{p}}</h2>
+    <div >
+        <h1 >Deck : {{p}}</h1> -->
+        <!-- <h2>Flip the cards &#11015</h2>
+        <button class='btn btn-success pull-right'style="background-color: #090909;border-color: #1a237e;margin: right -5cm;">
+            <a href='/signin/deck/{{current_user.id}}' style="color: white;" >Go Back</a>
+        </button>
+    </div>
+    <br>
+    <hr> -->
+    <br>
+    <div>
+        <div style="text-align:center;">
+        <button class='btn btn-success pull-right'  id="bu" onclick="reply_click()" >See Card</button>
+    </div>
+  
+    <div>
+    {% set count = namespace(value=0) %}
+    {% if rows %}
+    {% for row in rows %}
+    <div style="display: flex;flex-direction:row; float: left; height: 300px;">
+    <div class="flip-box" id="js{{loop.index}}" style="visibility:hidden; margin-top: 42.2px;margin-left: 60px;"> 
+        <!-- hidden -->
+    <div class="flip-box-inner">
+        <div class="flip-box-front">
+        <h2 id="c">Front Side</h2>
+        <br>
+        <br>
+        <h3>{{row[1]}}</h3>
+    </div>
+    <div class="flip-box-back">
+        <h2>Back Side</h2>
+        <br>
+        <br>
+        <h3>{{row[2]}}</h3>
+    </div>
+    </div>
+    <form action="/signin/deck/quiz/{{current_user.id}}/{{p}}/card/{{row[0]}}" method="POST">
+    <button class="btn1 success" type="submit" name="click" value="easy">Easy</button>
+    <button class="btn1 info" type="submit" name="click" value="medium"  >Medium</button>
+    <button class="btn1 warning" type="submit" name="click" value="hard" >Hard</button>
+    <button class="btn1 danger" type="submit" name="click" value="very_hard" >Very hard</button>
+    </form>
+    </div>
+    </div>      
+    {% set count.value = count.value + 1 %}
+    {% if count.value ==5 %}
+        {% set count =  namespace(value=0) %}    
+            <br><br>
+        
+    {% endif %}
+    
+    {% endfor %}
+    {% else %}
+    <br>
+    <h3><b>You have no Cards, add Cards to start. </b></h3>
+    {% endif %}
+    </div>
+    <p id="kk" style="visibility: hidden;">{{rows | length}}</p>
+    <br><br>
+</div>
+
+</body>
+</html>

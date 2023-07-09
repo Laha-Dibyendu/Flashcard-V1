@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+flask-restful
+Flask_Security
+email_validator
+bcrypt
+flask-login
+flask_bootstrap
+wtforms
+flask_wtf

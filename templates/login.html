@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Log-in Page</title>
+    <style>
+        body {
+            font-family: Garamond, serif;;
+        }
+    </style>
+
+</head>
+<body style="text-align:center;" >
+    <div class="bg2" style="background-color:#011047;">
+        <div class="p-3 mb-2 bg-dark text-white" style="padding: 0.8rem!important;">
+            <h1>Welcome to Laha's Application on Flash card</h1> 
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="/"><h4>About</h4></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signin"><h4>Sign in</h4></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register"><h4>Register</h4></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="getting-started.pdf"><h4>Guide book</h4></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    <div class="container mt-5" style="
+      width: 1944px;
+      height: 724px;
+      background-image: url('/static/gg.png');
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: 100% 100%; background-attachment: scroll;">
+
+    <div>
+    <h2>
+        Sign in to start learning
+    </h2>
+    <!-- <p>Sign in to start learning</p> -->
+    
+</div >
+<div style="text-align:center;">
+    <form  action="/signin" method="post">
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label" >Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" required>
+            </div>
+        </div>
+        <br>
+          </div>
+        <div class="form-group row">
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="pasw" required>
+            </div>
+        </div>
+
+
+        <!-- <div>
+            <label><b>Email</b></label>
+            <input type="email" name="email"/><br><br>
+            <label><b>Password</b></label>
+            <input type="password" name="pasw"/><br><br>
+            <button type="submit" class="submit"><b>Sign in</b></button>
+        </div> -->
+        <br>
+        <!-- <button type="button" class="cancelbtn" ><a href="/" style="text-decoration: none; color: rgb(0, 0, 0);"><b>Cancel</b></a></button> -->
+        <div class="form-group row" 
+        style="margin-left: 165px;">
+    
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary" >Sign in</button>
+              <button type="button" class="btn btn-warning"  ><a href="/" style="text-decoration: none; color: rgb(0, 0, 0);"><b>Cancel</b></a></button>
+            
+            </div>    
+        </div>
+    </form>
+    <br>
+    <div>
+        <p>New User ? <a href="/register">Register Here</a></p>
+    </div>
+</div>
+</div>
+<div class="mt-5 p-4 bg-dark text-white text-center">
+    <p >To know more read the <a href="getting-started.pdf" download="New_file_name">Guide book</a></p>
+    <p >Dibyendu Laha | 2020 Batch | copyright, 2021 | All rights reserved by the owner.</p>
+</div>
+</body>
+</html>

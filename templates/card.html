@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <title>Card</title>
+    <style>
+        body {
+            font-family: Garamond, serif;;
+        
+    }
+        
+        .flip-box {
+          background-color: transparent;
+          width: 300px;
+          height: 200px;
+          border: 1px solid #f1f1f1;
+          perspective: 1000px;
+        }
+        
+        .flip-box-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          text-align: center;
+          transition: transform 0.8s;
+          transform-style: preserve-3d;
+        }
+        
+        .flip-box:hover .flip-box-inner {
+          transform: rotateY(180deg);
+        }
+        
+        .flip-box-front, .flip-box-back {
+          border-radius: 0.5em;
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+        }
+        
+        .flip-box-front {
+          background-color: rgb(84, 238, 84);
+          color: black;
+        }
+        
+        .flip-box-back {
+          background-color: dodgerblue;
+          color: white;
+          transform: rotateY(180deg);
+        }
+
+        /* button */
+        .btn1 {
+          border-radius: 0.5em;
+        border: 2px solid black;
+        background-color: white;
+        color: black;
+        padding: 8px 9px;
+        font-size: 16px;
+        cursor: pointer;
+        width:auto;
+        text-align: center;
+        /* border-radius: 5px; */
+        }
+
+        /* Green */
+        .success {
+        border-color: #b30000;
+        color: rgb(128, 0, 0);
+        }
+
+        .success:hover {
+        background-color: #c00000;
+        color: white;
+        }
+        .warning {
+        border-color: #ff9800;
+        color: orange;
+
+        }
+
+        .warning:hover {
+        background: #ff9800;
+        color: white;
+        }
+        /* Blue */
+        .info {
+        border-color: #2196F3;
+        color: dodgerblue;
+        
+        }
+
+        .info:hover {
+        background: #2196F3;
+        color: white;
+        }
+        body {
+            font-family: Garamond, serif;;
+        
+    }
+        </style>
+
+    <script>
+
+        function reply_click(){
+            var collection1 = document.getElementsByClassName("flip-box");
+            
+            var m = Math.floor((Math.random() * document.getElementById("kk").innerHTML)+1);
+            for (var i =0 ; i < collection1.length; i++){
+                if (i+1 != m){
+                    document.getElementById('js'+(i+1)).style.visibility="hidden";
+                }
+                else{
+                    document.getElementById('js'+(i+1)).style.visibility="visible";  
+                        
+                }
+            }
+            
+        }
+        function func1(id){
+          document.getElementById("ff"+id.substring(1,)).style.visibility="visible";
+          //var m=document.getElementById("c"+clicked_id.substring(2,)).innerHTML;
+        }
+        function func2(id){
+          document.getElementById("fd"+id.substring(1,)).style.visibility="visible";
+        }
+
+    </script>
+
+</head>
+<body style="text-align:center; 
+background-image: url('/static/bas.jpg');background-repeat: no-repeat;
+        background-attachment:scroll; 
+        background-size: 100% 100%; background-attachment: scroll, local;;
+        width: 1944px;
+        min-height: 724px;
+        height: 100%;
+        width: 100%;">
+
+
+<div class="bg2" style="background-color:#011047;">
+  <div class="p-3 mb-2 bg-dark text-white" style="padding: 0.8rem!important;">
+      <h1 style="text-align: left;">Hi {{ current_user.f_name }},</h1> 
+      <p style="text-align: left;">Here you can see all the cards in the deck {{p}}. Hover over the cards below to see the front and back.</p> 
+  </div>
+</div>
+    <!-- <div>
+    <h1>3D Flip Box (Horizontal)</h1>
+    <h3>Hover over the box below:</h3>
+    <hr>
+    </div> -->
+    <!-- <div style="text-align:center;">
+        <button id="bu" onclick="reply_click()" >Show Card</button>
+        </div> -->
+
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+          <div class="container-fluid">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" ><h4>Cards</h4></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/signin/deck/{{current_user.id}}"><h4>Go Back</h4></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout"><h4>Log Out</h4></a>
+          </li>
+          </ul>
+          </div>
+          </nav>
+    
+<!-- 
+    <div>
+        <a href="/signin/deck/{{current_user.id}}">Go Back</a>
+    </div> -->
+    <!-- <div>
+      <a href="/logout">Log Out</a>
+    </div>  
+    <hr> -->
+    <!-- <div class="container mt-5"> -->
+    {% set count = namespace(value=0) %}
+    {% if rows %}
+    {% for row in rows %}
+    
+    
+    <div style="display: flex;flex-direction:row; float: left;height: 600px; ">
+    <div class="flip-box" id="js{{loop.index}}" style="visibility:visible; margin-top: 42.2px;margin-left: 60px; margin-bottom: 1px;"> 
+    
+    
+      <div class="flip-box-inner">
+          <div class="flip-box-front">
+              <h2 id="c">Front Side</h2>
+              <br>
+              <br>
+              <h3>{{row[1]}}</h3>
+          </div>
+
+          <div class="flip-box-back">
+              <h2>Back Side</h2>
+              <br>
+              <br>
+              <h3>{{row[2]}}</h3>
+          </div>
+      </div>
+    <br>
+    <form id="ff{{loop.index}}" action="/signin/deck/quiz/{{current_user.id}}/{{p}}/card/{{row[0]}}/edit" style="visibility: hidden" method="POST">
+      <label for="cname1"><b>Card Front</b></label>
+      <input type="text" placeholder="Enter front description" name="fronte" required>
+      <br><br>
+      <label for="bname1"><b>Card Back</b></label>
+      <input type="text" placeholder="Enter back description" name="backe" required>
+      <br><br>
+      <button type="submit" >submit</button>
+    </form> 
+    <br>
+      <form id="fd{{loop.index}}" style="visibility: hidden;" action="/signin/deck/quiz/{{current_user.id}}/{{p}}/card/{{row[0]}}/delete" method="post">
+        <label for="dname3"><b>Are you Sure ? You want to delete the card.</b></label>
+        <!-- <input type="text" placeholder="Enter Deck Name" name="dname3" required> -->
+        <br>
+        <button type="submit" >Delete</button>
+        <br>
+        <!-- <button type="button"><a href="" style="text-decoration: none;">Cancel</a></button><br><br> -->
+    </form>
+    <br>
+      <button class="btn1 warning" id="c{{loop.index}}" type="submit" name="click" value="Edit" onclick="func1(this.id)" >Edit</button>
+      <button class="btn1 success" id="b{{loop.index}}" type="submit" name="click" value="delete" onclick="func2(this.id)">Delete</button>
+      
+      <button class="btn1 info" type="submit" name="click" value="cancel"><a href="/signin/deck/card/{{current_user.id}}/{{p}}" style="text-decoration: none;">Cancel</a></button>
+    </div>
+    </div>
+  
+  
+    {% set count.value = count.value + 1 %}
+    {% if count.value == 5 %}
+        {% set count =  namespace(value=0) %}    
+        <br><br>
+        
+    {% endif %}
+    
+    {% endfor %}
+    
+    {% else %}
+    <br><br>
+      <h4><b>There is no card in this deck please go back and add some cards. </b></h4>
+    {% endif %}
+
+    <!-- </div> -->
+    <p id="kk" style="visibility: hidden;">{{rows | length}}</p>
+    
+    
+     <!-- <div style="text-align:center;">
+        <button id="bu" onclick="reply_click()" >Show Card</button>
+        </div> -->
+        
+      </body>
+</html>
